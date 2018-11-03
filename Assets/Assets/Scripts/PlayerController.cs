@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		// TODO: multiply direction normalized to properly exit projectile from character
 		GameObject a = Instantiate (snakePrefab, (Vector2)transform.position + (direction.normalized) , Quaternion.identity);
+		// TODO: add force or set velocity of snake to fire
 		a.GetComponent<SnakeController> ().laserPoint = transform.GetChild (0);
 	}
 }
