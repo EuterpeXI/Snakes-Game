@@ -44,6 +44,7 @@ public class SnakeController : MonoBehaviour
 	
 	void Move(Vector2 direction, float speed)
 	{
+		// TODO: Interpolate current velocity with new velocity or use forces 
 		body.MovePosition((Vector2)transform.position + ((direction).normalized * speed * Time.deltaTime));	
 	}
 	

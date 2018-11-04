@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class TriggerController : MonoBehaviour 
 {
-	public GameObject door;
-	
+	public DoorController door;
+
 	void OnTriggerStay2D()
 	{
-			door.SetActive(false);
+		door.Trigger(GetInstanceID());
 	}
 	
-		void OnTriggerExit2D()
+	void OnTriggerExit2D()
 	{
-			door.SetActive(true);
+		door.UnTrigger(GetInstanceID());
 	}
 
 }
