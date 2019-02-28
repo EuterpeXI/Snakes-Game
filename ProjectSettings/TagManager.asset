@@ -43,11 +43,20 @@ TagManager:
   - name: Background
     uniqueID: 858818387
     locked: 0
+  - name: Ground
+    uniqueID: 1714722387
+    locked: 0
   - name: Main
     uniqueID: 3978562295
     locked: 0
   - name: Character
     uniqueID: 267482637
+    locked: 0
+  - name: Walls
+    uniqueID: 3538850823
+    locked: 0
+  - name: Interactables
+    uniqueID: 455672955
     locked: 0
   - name: Foreground
     uniqueID: 3455646399
