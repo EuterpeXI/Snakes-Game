@@ -1,10 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class LaserPointController : MonoBehaviour 
+public class LaserPointController : MonoBehaviour
 {
-	void Update () {
-		transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
-	}
+    public static Vector3 position;
+
+    void Update()
+    {
+        transform.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        position = transform.position;
+    }
 }

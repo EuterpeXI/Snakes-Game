@@ -20,7 +20,7 @@ public class MobileJoystickPlayerController : MonoBehaviour
 
         Debug.Log(direction, this);
         player.Move(-direction.x * Time.deltaTime,
-                    -direction.y * Time.deltaTime); 
+                    -direction.y * Time.deltaTime);
         //POTENTIAL BUG if it does not go in right direction adjust here
         // -> depends on orientation of screen ->
     }
