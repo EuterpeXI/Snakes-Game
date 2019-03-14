@@ -143,4 +143,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedToMouse: 2
   speedToRandom: 0.2
-  laserPoint: {fileID: 4853279843044834}
+  AirTime: 3
+  inAir: 0

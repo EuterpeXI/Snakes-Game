@@ -15,10 +15,10 @@ public class MobileJoystickPlayerController : MonoBehaviour
 
     void moveCharacter(Vector3 direction)
     {
-        direction.z = 0; //to not interfere  with normalization.
+        direction.z = 0; //TO NOT interfere  with normalization do not include Z axis
         direction = direction.normalized;
 
-        Debug.Log(direction, this);
+//        Debug.Log(direction, this);
         player.Move(-direction.x * Time.deltaTime,
                     -direction.y * Time.deltaTime);
         //POTENTIAL BUG if it does not go in right direction adjust here
