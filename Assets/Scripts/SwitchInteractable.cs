@@ -4,16 +4,35 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEditor;
 
+/*
+Author: Amelia Chin
+*/
 public class SwitchInteractable : MonoBehaviour
 {
+    private bool switchTrigger = false;
 
-    bool OnTriggerStay2D(Collider2D other)
+    /*
+    * This trigger function will detect if the switch had collided with an object tagged with "snake_bullet" and sets the value
+    * of the switchTrigger boolean based on collision.
+    */
+    void OnTriggerStay2D(Collider2D other)
     {
-        if(other.tag == "snake_bullet"){
-            // Have the script for the doors handle the conditions
-            return true;
+        // If the switch box collider collided with a GameObject that is tagged with "snake_bullet", switch is on/active
+        if (other.tag == "snake_bullet"){
+            switchTrigger = true;
         }
         
-        return false;
+        // Else, switch is still off/inactive
+        switchTrigger = false;
     }
+
+    /* 
+    * This function returns the value of switchTrigger when called. 
+    * switchTrigger returns true if the switch collided with the snake bullet
+    * switchTrigger returns false if the switch did not collide with the snake bullet
+    */
+    public bool get_trigger(){
+        return switchTrigger;
+    }
+
 }
