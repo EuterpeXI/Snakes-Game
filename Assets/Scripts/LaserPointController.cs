@@ -4,9 +4,9 @@ public class LaserPointController : MonoBehaviour
 {
     public static Vector3 position;
 
-    public void MoveLaser(Vector3 location)
+    void Update()
     {
-        transform.position = (Vector2)Camera.main.ScreenToWorldPoint(location);
+        transform.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
         position = transform.position;
     }
 }
