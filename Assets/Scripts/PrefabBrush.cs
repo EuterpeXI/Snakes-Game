@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
+/*
 namespace UnityEditor
 {
     [CreateAssetMenu(fileName = "Prefab brush", menuName = "Brushes/Prefab brush")]
@@ -108,3 +108,4 @@ namespace UnityEditor
         }
     }
 }
+*/
