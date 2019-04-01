@@ -7,8 +7,6 @@ public class SnakeController : MonoBehaviour
 {
     public float speedToMouse = 1.0f;
     public float speedToRandom = 0.2f;
-    public float AirTime; // the time spent in the 'air' when spawned 
-    public bool inAir; // status of in air changes how the snake moves
 
     private TopDownMovementController movement;
 
@@ -17,48 +15,31 @@ public class SnakeController : MonoBehaviour
 
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
-        inAir = true;
-        StartCoroutine(TimeUtilites.WaitToDoAction(() =>
-        {
-            inAir = false;
-            Debug.Log("No longer in air", this);
-        }, AirTime));
+        movement = GetComponent<TopDownMovementController>();
     }
 
     void FixedUpdate()
     {
         Vector2 laserDirection = LaserPointController.position - transform.position;
-        if (inAir)
+        // PERF: laserDirection.magnitude
+        float laserMagnitude = laserDirection.magnitude;
+        laserDirection = laserDirection.normalized;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, laserDirection, laserMagnitude);
+        if (hit.collider == null)
         {
+            movement.Move(laserDirection * speedToMouse);
+            otherDirection = Vector2.zero;
         }
         else
         {
-            // PERF: laserDirection.magnitude
-            RaycastHit2D hit =
-                Physics2D.Raycast(transform.position, LaserPointController.position, laserDirection.magnitude);
-            if (hit.collider == null)
+            // if this is the first frame snake stops seeing laser
+            if (otherDirection == Vector2.zero)
             {
-                Move(laserDirection, speedToMouse);
-                otherDirection = Vector2.zero;
+                otherDirection = Random.insideUnitCircle;
             }
-            else
-            {
-                // if this is the first frame snake stops seeing laser
-                if (otherDirection == Vector2.zero)
-                {
-                    otherDirection = Random.insideUnitCircle;
-                }
 
-                Move(otherDirection, speedToRandom);
-            }
+            movement.Move(otherDirection * speedToRandom);
         }
-    }
-
-    void Move(Vector2 direction, float speed)
-    {
-        // TODO: Interpolate current velocity with new velocity or use forces 
-        body.MovePosition((Vector2) transform.position + ((direction).normalized * speed * Time.deltaTime));
-        body.MoveRotation(Vector2.Angle(transform.position, direction));
     }
 }

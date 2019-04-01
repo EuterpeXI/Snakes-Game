@@ -15,14 +15,9 @@ public class MobileJoystickPlayerController : MonoBehaviour
 
     public Vector2 OnJoystickDrag(Vector3 dragPosition)
     {
-        direction.z = 0; //TO NOT interfere  with normalization do not include Z axis
-        direction = direction.normalized;
-
-//        Debug.Log(direction, this);
-        player.Move(-direction.x * Time.deltaTime,
-                    -direction.y * Time.deltaTime);
-        //POTENTIAL BUG if it does not go in right direction adjust here
-        // -> depends on orientation of screen ->
+        Vector3 moveDirection = Vector3.ClampMagnitude(dragPosition - center.position, joystickRadius);
+        innerCircle.position = center.position + moveDirection;
+        return moveDirection / joystickRadius;
     }
     public Vector2 ResetJoystick()
     {

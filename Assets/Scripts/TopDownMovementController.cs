@@ -12,15 +12,14 @@ public class TopDownMovementController : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
-    
+
     public void Move(float horizontalMod, float verticalMod)
     {
         _rigidbody2D.velocity = (horizontalSpeed * horizontalMod)+( verticalSpeed * verticalMod);
     }
 
-    public void ResetMovement()
+    public void Move(Vector2 direction)
     {
-        _rigidbody2D.velocity = Vector2.zero;
+        Move(direction.x, direction.y);
     }
-
 }
