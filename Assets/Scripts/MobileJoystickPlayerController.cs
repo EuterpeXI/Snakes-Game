@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MobileJoystickPlayerController : MonoBehaviour
 {
+    public TopDownMovementController player;
     
     [Tooltip("this is what relative will calculate")]
     public Transform center;
@@ -11,48 +12,34 @@ public class MobileJoystickPlayerController : MonoBehaviour
     [Tooltip("Moves with the input position")]
     public Transform innerCircle;
 
-    public float joystickRadius = 40.0f;
 
-    public Vector2 OnJoystickDrag(Vector3 dragPosition)
+    void moveCharacter(Vector3 direction)
     {
-        Vector3 moveDirection = Vector3.ClampMagnitude(dragPosition - center.position, joystickRadius);
-        innerCircle.position = center.position + moveDirection;
-        return moveDirection / joystickRadius;
+        direction.z = 0; //to not interfere  with normalization.
+        direction = direction.normalized;
+
+        Debug.Log(direction, this);
+        player.Move(-direction.x * Time.deltaTime,
+                    -direction.y * Time.deltaTime);
+        //POTENTIAL BUG if it does not go in right direction adjust here
+        // -> depends on orientation of screen ->
     }
-    public Vector2 ResetJoystick()
+
+// Note this won't stop dragging/ pdating once you start dragging and leave the collider. -> good 
+    void OnMouseDrag()
     {
-        return OnJoystickDrag(center.position);
+        Debug.Log("Mouse Drag");
+        Vector3 input = getMousePosition();
+        innerCircle.position = input;
+
+        moveCharacter(center.position - input);
+        
     }
 
-    /*
-        void moveCharacter(Vector3 direction)
-        {
-            direction.z = 0; //to not interfere  with normalization.
-            direction = direction.normalized;
+    Vector2 getMousePosition()
+    {
+        //yes it does need to be vector2 ->  strips z axis so that setting position does not change
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            Debug.Log(direction, this);
-            player.Move(-direction.x * Time.deltaTime,
-                        -direction.y * Time.deltaTime);
-            //POTENTIAL BUG if it does not go in right direction adjust here
-            // -> depends on orientation of screen ->
-        }
-
-        // Note this won't stop dragging/ pdating once you start dragging and leave the collider. -> good 
-        void OnMouseDrag()
-        {
-            Debug.Log("Mouse Drag");
-            Vector3 input = getMousePosition();
-            innerCircle.position = input;
-
-            moveCharacter(center.position - input);
-
-        }
-
-        Vector2 getMousePosition()
-        {
-            //yes it does need to be vector2 ->  strips z axis so that setting position does not change
-            return Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        }
-    */
+    }
 }

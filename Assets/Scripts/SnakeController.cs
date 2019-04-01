@@ -2,33 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(TopDownMovementController))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class SnakeController : MonoBehaviour
 {
     public float speedToMouse = 1.0f;
     public float speedToRandom = 0.2f;
 
-    private TopDownMovementController movement;
+    private Rigidbody2D body;
 
     // Direction snake will move when cant see laser
     private Vector2 otherDirection = Vector2.zero;
 
     void Start()
     {
-        movement = GetComponent<TopDownMovementController>();
+        body = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
         Vector2 laserDirection = LaserPointController.position - transform.position;
-        // PERF: laserDirection.magnitude
-        float laserMagnitude = laserDirection.magnitude;
-        laserDirection = laserDirection.normalized;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, laserDirection, laserMagnitude);
+        // PERF: laserDirection.magnitude
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, laserDirection.normalized, laserDirection.magnitude);
         if (hit.collider == null)
         {
-            movement.Move(laserDirection * speedToMouse);
+            Move(laserDirection, speedToMouse);
             otherDirection = Vector2.zero;
         }
         else
@@ -39,7 +37,13 @@ public class SnakeController : MonoBehaviour
                 otherDirection = Random.insideUnitCircle;
             }
 
-            movement.Move(otherDirection * speedToRandom);
+            Move(otherDirection, speedToRandom);
         }
+    }
+
+    void Move(Vector2 direction, float speed)
+    {
+        // TODO: Interpolate current velocity with new velocity or use forces 
+        body.MovePosition((Vector2) transform.position + ((direction).normalized * speed * Time.deltaTime));
     }
 }
