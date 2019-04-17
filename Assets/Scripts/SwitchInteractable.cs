@@ -11,7 +11,8 @@ public class SwitchInteractable : MonoBehaviour
 {
     [SerializeField]
     bool isAlarm = false;
-    private bool switchTrigger = false;
+    public bool switchTrigger = false;
+    //private bool switchTrigger = false;
 
     /*
     * This trigger function will detect if the switch had collided with an object tagged with "snake_bullet" and sets the value
