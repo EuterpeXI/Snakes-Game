@@ -150,10 +150,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4301084909096540}
   - component: {fileID: 212092349286735406}
-  - component: {fileID: 61563319288044890}
   - component: {fileID: 50922305022086482}
   - component: {fileID: 1212206283}
   - component: {fileID: 1212206285}
+  - component: {fileID: 6761393464801369216}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -226,32 +226,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &61563319288044890
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052788217459202}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0009963512, y: 0.22705722}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 23.62, y: 23.62}
-    newSize: {x: 2.25, y: 1.81}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 6.4469113, y: 4.144625}
-  m_EdgeRadius: 0
 --- !u!50 &50922305022086482
 Rigidbody2D:
   serializedVersion: 4
@@ -307,6 +281,22 @@ MonoBehaviour:
   laserPoint: {fileID: 114279971550982124}
   player: {fileID: 1212206283}
   TapThreshold: 0.15
+--- !u!58 &6761393464801369216
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052788217459202}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3.02
 --- !u!1 &1828579516734396
 GameObject:
   m_ObjectHideFlags: 0
