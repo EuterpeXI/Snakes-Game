@@ -19,8 +19,25 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        laserPoint.MoveLaser(pos);
+        //var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    private void FixedUpdate()
+    {
+#if UNITY_EDITOR || UNITY_STANDALONE
+        bool buttDown = Input.GetButton("Fire1");
+        bool buttUp = Input.GetButtonUp("Fire1");
+
+        if (buttDown && !buttUp)
+        {
+            laserPoint.MoveLaser(Input.mousePosition);
+        }
+        else
+        {
+            laserPoint.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            laserPoint.GetComponent<SpriteRenderer>().enabled = false;
+        }
+#endif
     }
 
     void NotUpdate()
