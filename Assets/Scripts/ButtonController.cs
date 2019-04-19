@@ -62,6 +62,5 @@ public class ButtonController : MonoBehaviour
                 LaserPointController.position - playerController.transform.position
                 )
             );
-        Debug.Log("fire");
     }
 }
