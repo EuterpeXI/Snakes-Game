@@ -36,7 +36,7 @@ public class JoystickController : MonoBehaviour
         Vector2 movement = new Vector2(horizonalMovement, verticalMovement);
         Vector2 newPosition = movement * Time.deltaTime * speed;
 
-        //transform.rotation = Quaternion.LookRotation(movement);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
 
         rb.MovePosition(rb.position + newPosition);
     }
