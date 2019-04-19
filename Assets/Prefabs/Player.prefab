@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1212206285}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 4704631700144156}
   - component: {fileID: 212652712930225622}
   - component: {fileID: 114279971550982124}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LaserPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

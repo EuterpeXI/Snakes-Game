@@ -7,6 +7,7 @@ public class ButtonController : MonoBehaviour
     public RectTransform joystick;
     public RectTransform button;
     public Vector2 spacing;
+    public JoystickController playerController;
     private RectTransform prevJoystick;
     public bool secondButton;
 
@@ -23,6 +24,8 @@ public class ButtonController : MonoBehaviour
         //else
         //    button.sizeDelta = prevJoystick.sizeDelta;
         //button.position = new Vector3(spacerX,spacerY);
+
+        playerController = GameObject.FindWithTag("Player").GetComponent<JoystickController>();
     }
 
     private void Update()
@@ -50,5 +53,15 @@ public class ButtonController : MonoBehaviour
                 button.position = new Vector3(spacerX, spacerY);
             }
         }
+    }
+
+    public void FireSnakeThroughPlayerController()
+    {
+        playerController.FireSnake(
+            Vector3.Normalize( 
+                playerController.transform.position - LaserPointController.position
+                )
+            );
+        Debug.Log("fire");
     }
 }

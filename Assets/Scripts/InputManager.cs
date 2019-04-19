@@ -17,7 +17,13 @@ public class InputManager : MonoBehaviour
         playerTransform = this.transform;
     }
 
-    void Update()
+    private void Update()
+    {
+        var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        laserPoint.MoveLaser(pos);
+    }
+
+    void NotUpdate()
     {
 //        #undef UNITY_EDITOR
         #if UNITY_EDITOR || UNITY_STANDALONE
