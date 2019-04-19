@@ -26,7 +26,8 @@ public class SwitchInteractable : MonoBehaviour
         }
         
         // Else, switch is still off/inactive
-        switchTrigger = false;
+        else
+            switchTrigger = false;
     }
 
     /* 
