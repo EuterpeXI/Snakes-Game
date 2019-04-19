@@ -15,6 +15,9 @@ public class JoystickController : MonoBehaviour
     private float verticalMovement;
     private float timeLastFired;
     private Vector2 lastMoveDirection;
+    private Quaternion targetRotation;
+    private Vector2 newPosition;
+    private Vector2 movement;
 
     void Start()
     {
@@ -33,10 +36,19 @@ public class JoystickController : MonoBehaviour
         horizonalMovement = UltimateJoystick.GetHorizontalAxis("Movement");
         verticalMovement = UltimateJoystick.GetVerticalAxis("Movement");
 
-        Vector2 movement = new Vector2(horizonalMovement, verticalMovement);
-        Vector2 newPosition = movement * Time.deltaTime * speed;
+        //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
+        // If they are not equal to 0, the character is moving
+        if (horizonalMovement != 0.0 && verticalMovement != 0.0){
+            movement = new Vector2(horizonalMovement, verticalMovement);
+            newPosition = movement * Time.deltaTime * speed;
+            //targetRotation = Quaternion.LookRotation(movement);
+        }
+        else{
+            newPosition = Vector2.zero;
+        }
+
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, speed * Time.deltaTime);
 
         rb.MovePosition(rb.position + newPosition);
     }
