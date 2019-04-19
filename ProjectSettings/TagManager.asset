@@ -8,6 +8,7 @@ TagManager:
   - Floor
   - snake_bullet
   - Alarm
+  - Mouse
   layers:
   - Default
   - TransparentFX
