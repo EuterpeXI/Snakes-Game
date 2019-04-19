@@ -26,11 +26,11 @@ public class JoystickController : MonoBehaviour
 
         Vector2 movement = new Vector2(horizonalMovement, verticalMovement);
 
-        Debug.Log("Position: " + rb.position);
+        //Debug.Log("Position: " + rb.position);
         Vector2 newPosition = movement * Time.deltaTime * speed;
 
-        Debug.Log("NewPosition: " + newPosition);
-        Debug.Log("Movement: " + movement);
+        //Debug.Log("NewPosition: " + newPosition);
+        //Debug.Log("Movement: " + movement);
         rb.MovePosition(rb.position + newPosition);
     }
 }
