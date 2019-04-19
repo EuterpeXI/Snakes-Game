@@ -23,7 +23,7 @@ TagManager:
   - BoxSnake
   - Box
   - Laserable
-  - 
+  - Don'tColliderWithSnake
   - 
   - 
   - 
