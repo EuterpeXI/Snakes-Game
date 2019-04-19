@@ -15,12 +15,13 @@ public class JoystickController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         moveCharacter();
     }
 
-    private void moveCharacter(){
+    private void moveCharacter()
+    {
         horizonalMovement = UltimateJoystick.GetHorizontalAxis("Movement");
         verticalMovement = UltimateJoystick.GetVerticalAxis("Movement");
 
