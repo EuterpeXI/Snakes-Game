@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 841948948396556365}
   - component: {fileID: 841948948396556364}
   - component: {fileID: 841948948396556367}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Open_Walls_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
