@@ -52,8 +52,8 @@ public class SnakeController : MonoBehaviour
         //ignroe layers: snake = 9, player = 8, box = 11, ignore raycasts layer = 2, boxsnake = 10
         //ignore box unitl it becomes BOX SNAKE!! ( so we don't ignore layer 10)
         var raycastMask = IsBoxSnake ? 
-            ~((1 << 9) | (1 << 8) | (1 << 2) | (1 << 10) | (1 << 12)):
-            ~((1 << 9) | (1 << 8) | (1 << 11) | (1 << 2) | (1 << 12));
+            ~((1 << 9) | (1 << 8) | (1 << 2) | (1 << 10) | (1 << 12)| (1 << 13)):
+            ~((1 << 9) | (1 << 8) | (1 << 11) | (1 << 2) | (1 << 12) | (1 << 13));
         RaycastHit2D hit = Physics2D.Raycast(transform.position, laserDirection, laserMagnitude, raycastMask);
 
         if (hit.collider == null)
