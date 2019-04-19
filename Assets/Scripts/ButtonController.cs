@@ -59,7 +59,7 @@ public class ButtonController : MonoBehaviour
     {
         playerController.FireSnake(
             Vector3.Normalize( 
-                playerController.transform.position - LaserPointController.position
+                LaserPointController.position - playerController.transform.position
                 )
             );
         Debug.Log("fire");

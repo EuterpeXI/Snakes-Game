@@ -24,7 +24,7 @@ public class InputManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-#if UNITY_EDITOR || UNITY_STANDALONE
+        #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_ANDROID
         bool buttDown = Input.GetButton("Fire1");
         bool buttUp = Input.GetButtonUp("Fire1");
 
@@ -37,7 +37,7 @@ public class InputManager : MonoBehaviour
             laserPoint.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             laserPoint.GetComponent<SpriteRenderer>().enabled = false;
         }
-#endif
+        #endif
     }
 
     void NotUpdate()
