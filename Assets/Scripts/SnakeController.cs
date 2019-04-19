@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(TopDownMovementController))]
 public class SnakeController : MonoBehaviour
 {
-    public float speedToMouse = 1.0f;
+    [FormerlySerializedAs("speedToMouse")] public float speedToLaserPointer = 1.0f;
     public float speedToRandom = 0.2f;
 
     private TopDownMovementController movement;
@@ -28,7 +29,7 @@ public class SnakeController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, laserDirection, laserMagnitude);
         if (hit.collider == null)
         {
-            movement.Move(laserDirection * speedToMouse);
+            movement.Move(laserDirection * speedToLaserPointer);
             otherDirection = Vector2.zero;
         }
         else

@@ -37,25 +37,25 @@ public class PlayerController : MonoBehaviour
         */
     }
 
-    public void FireSnakeAtLaserPointer()
-    {
-        if (LaserPointController.position != null)
-        {
-            FireSnake(transform.position - LaserPointController.position);
-        }
-    }
-
-    public void FireSnake(Vector2 direction)
-    {
-        if (Time.time - firingCooldown >= timeLastFired)
-        {
-            // TODO: multiply direction normalized to properly exit projectile from character
-            GameObject a = Instantiate(snakePrefab, (Vector2)transform.position + (direction.normalized),
-                Quaternion.identity);
-
-            a.GetComponent<Rigidbody2D>().velocity = initSnakeVelocity * direction.normalized;
-
-            timeLastFired = Time.time;
-        }
-    }
+//    public void FireSnakeAtLaserPointer()
+//    {
+//        if (LaserPointController.position != null)
+//        {
+//            FireSnake(transform.position - LaserPointController.position);
+//        }
+//    }
+//
+//    public void FireSnake(Vector2 direction)
+//    {
+//        if (Time.time - firingCooldown >= timeLastFired)
+//        {
+//            // TODO: multiply direction normalized to properly exit projectile from character
+//            GameObject a = Instantiate(snakePrefab, (Vector2)transform.position + (direction.normalized),
+//                Quaternion.identity);
+//
+//            a.GetComponent<Rigidbody2D>().velocity = initSnakeVelocity * direction.normalized;
+//
+//            timeLastFired = Time.time;
+//        }
+//    }
 }

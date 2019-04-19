@@ -4,59 +4,72 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public MobileJoystickPlayerController joystick;
     public LaserPointController laserPoint;
-    public TopDownMovementController playerMovement;
-    public PlayerController player;
+    public JoystickController player;
+    public float TapThreshold = 0.3f;
 
     private int joystickFingerId = -1;
+    private Transform playerTransform;
+    private float timeDown = 0f;
+
+    private void Start()
+    {
+        playerTransform = this.transform;
+    }
 
     void Update()
     {
+//        #undef UNITY_EDITOR
+        #if UNITY_EDITOR || UNITY_STANDALONE
+        bool isMouseButtonDown = Input.GetButton("Fire1");
+        bool didUserReleaseClick = Input.GetButtonUp("Fire1");
+        Vector3 pos = Vector3.zero;
+        
+        pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+        // update laser point for holds and mouse moves
+        laserPoint.MoveLaser(pos);
 
-#if UNITY_EDITOR || UNITY_STANDALONE
-        laserPoint.MoveLaser(Input.mousePosition);
-        playerMovement.Move(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized);
-        if (Input.GetButtonDown("Fire1"))
+        if (isMouseButtonDown)
+            timeDown += Time.deltaTime;
+
+        bool isTouchATap = didUserReleaseClick && timeDown < TapThreshold;
+        
+        //fire snake if click or tap 
+        if (isTouchATap)
         {
-            player.FireSnake((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            player.FireSnake(Vector3.Normalize(pos - playerTransform.position));
+            Debug.Log("touchy");
         }
-#else
-        bool joystickReleased = true;
-        for (int i = 0; i < Input.touchCount; ++i)
+        
+        //must happen AFTER the tap threshold check
+        if (!isMouseButtonDown)
+            timeDown = 0f;
+        
+        #elif UNITY_ANDROID
+        //use latest touch point, don't use current touch points
+        int touchId = Input.touches.Length - 1;
+
+        if (touchId >= 0)
         {
-            Touch touch = Input.GetTouch(i);
-            Vector3 touchLocation = Camera.main.ScreenToWorldPoint(touch.position);
+            Touch touch = Input.touches[touchId];
+            Vector3 pos = Camera.main.ScreenToWorldPoint(touch.position);
+            
+            // update laser point for where finger is
+            laserPoint.MoveLaser(pos);
 
             if (touch.phase == TouchPhase.Began)
-            {
-                if ((touch.position - (Vector2)joystick.transform.position).magnitude < joystick.joystickRadius)
-                {
-                    joystickFingerId = touch.fingerId;
-                }
-            }
-            
-            if (touch.fingerId == joystickFingerId)
-            {
-                playerMovement.Move(joystick.OnJoystickDrag(touch.position));
-                joystickReleased = false;
-            }
-            else
-            {
-                laserPoint.MoveLaser(touch.position);
+                timeDown = 0f;
 
-                if (touch.tapCount >= 2)
-                {
-                    player.FireSnake(touchLocation);
-                    touch.tapCount = 1;
-                }
+            if (touch.phase != TouchPhase.Ended)
+                timeDown += Time.deltaTime;
+            else if (timeDown < TapThreshold)
+            {
+                //fire snake
+                player.FireSnake(Vector3.Normalize(pos - playerTransform.position));
             }
         }
-        if (joystickReleased)
-        {
-            playerMovement.Move(joystick.ResetJoystick());
-            joystickFingerId = -1;
-        }
-#endif
+
+        #endif
     }
 }

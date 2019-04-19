@@ -9,6 +9,7 @@ public class JoystickController : MonoBehaviour
     public Vector2 initSnakeVelocity;
     public float firingCooldown;
     public float newSpeed = 3.0f;
+    public float SnakeSpawnDistance = 3f;
 
     private Rigidbody2D rb;
     private float horizonalMovement;
@@ -18,6 +19,8 @@ public class JoystickController : MonoBehaviour
     private Quaternion targetRotation;
     private Vector2 newPosition;
     private Vector2 movement;
+
+    
 
     void Start()
     {
@@ -58,10 +61,11 @@ public class JoystickController : MonoBehaviour
         if (Time.time - firingCooldown >= timeLastFired)
         {
             // TODO: multiply direction normalized to properly exit projectile from character
-            GameObject a = Instantiate(snakePrefab, (Vector2)transform.position + (direction.normalized),
-                Quaternion.identity);
+            GameObject a = Instantiate(
+                snakePrefab, (Vector2)transform.position + direction * SnakeSpawnDistance, Quaternion.identity
+                );
 
-            a.GetComponent<Rigidbody2D>().velocity = initSnakeVelocity * direction.normalized;
+            a.GetComponent<Rigidbody2D>().velocity = initSnakeVelocity * direction;
 
             timeLastFired = Time.time;
         }

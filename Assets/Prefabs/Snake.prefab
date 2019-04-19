@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4853279843044834}
   - component: {fileID: 212628398970682918}
-  - component: {fileID: 61594480007620350}
   - component: {fileID: 50467854424386470}
   - component: {fileID: 114364166979446036}
   - component: {fileID: 6833919093638742572}
-  - component: {fileID: 8898400238724975810}
+  - component: {fileID: 922481847977489140}
   m_Layer: 2
   m_Name: Snake
   m_TagString: snake_bullet
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1330696636713586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1585625, y: 0.1585625, z: 0.1585625}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 267482637
   m_SortingLayer: -4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7b00ae9ca06bd07269c9739d0433e31a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 699ab3211d3f1414cb59acad2df16e99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,32 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &61594480007620350
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330696636713586}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 2.92, y: 3.04}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &50467854424386470
 Rigidbody2D:
   serializedVersion: 4
@@ -143,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb0a821879cd7a419c5fb2a18cfe497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedToMouse: 2
+  speedToLaserPointer: 2
   speedToRandom: 0.2
 --- !u!114 &6833919093638742572
 MonoBehaviour:
@@ -159,8 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verticalSpeed: {x: 0, y: 1}
   horizontalSpeed: {x: 1, y: 0}
---- !u!60 &8898400238724975810
-PolygonCollider2D:
+--- !u!58 &922481847977489140
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -169,28 +142,9 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 2.92, y: 3.04}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5, y: -0.5}
-      - {x: -0.5, y: 0.5}
-      - {x: 0.5, y: 0.5}
-      - {x: 0.5, y: -0.5}
-    - - {x: 1, y: 3}
-      - {x: -1, y: 3}
-    - - {x: -0.5, y: 0.5}
-      - {x: -1, y: 3}
-    - - {x: 0.5, y: 0.5}
-      - {x: 1, y: 3}
+  serializedVersion: 2
+  m_Radius: 0.65
