@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 2111089783}
   - component: {fileID: 2111089784}
   - component: {fileID: 9137972266564124732}
-  m_Layer: 2
+  m_Layer: 13
   m_Name: LaserPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
