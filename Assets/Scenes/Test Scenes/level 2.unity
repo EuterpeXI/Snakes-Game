@@ -132290,6 +132290,40 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 206005704074967048}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &206005704074967055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8742118786837567298, guid: afe9629332edd4541b90848f742954c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 206005704074967048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!19719996 &206005704074967056
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206005704074967055}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+--- !u!19719996 &206005704074967057
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206005704074967049}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
 --- !u!114 &206005704074967075
 MonoBehaviour:
   m_ObjectHideFlags: 0
