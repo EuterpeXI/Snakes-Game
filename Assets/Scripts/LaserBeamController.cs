@@ -20,7 +20,7 @@ public class LaserBeamController : MonoBehaviour
     }
     private void Update()
     {
-#if UNITY_EDITOR || UNITY_STANDALONE
+
         bool buttDown = Input.GetButton("Fire1");
         bool buttUp = Input.GetButtonUp("Fire1");
 
@@ -35,8 +35,5 @@ public class LaserBeamController : MonoBehaviour
         else
             renderer.enabled = false;
 
-#elif UNITY_ANDROID
-
-#endif
     }
 }
